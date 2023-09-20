@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokepon</title>
+    <link rel="stylesheet" href="./style.css">
+    
+    
+</head>
+
+<body>
+
+    <section id="seleccionar-mascota">
+
+        <h1 class="title">PIEDRA - PAPEL - TIJERA</h1>
+
+        <img src="./6831874.png" alt="imagen">
+
+        <h2 class="subtitle">¡ELIJE CON QUIEN QUIERES JUGAR!</h2>
+
+        <div class="tarjeta-imagen">
+            <label class="stilo-texto-mascota" for="ROCKY">
+                <p>ROCKY</p>
+                <img src="./nino-PhotoRoom.png-PhotoRoom.png" alt="ROCKY" class="ajuste-img">
+            </label>
+
+            <input type="radio" name="mascota" id="ROCKY" />
+
+            <label class="stilo-texto-mascota" for="LOREN">
+                <p>LOREN</p>
+                <img src="./nina-PhotoRoom.png-PhotoRoom.png" alt="LOREN">
+            </label>
+
+            <input type="radio" name="mascota" id="LOREN" />
+
+            <label class="stilo-texto-mascota" for="MARVIN">
+                <p>MARVIN</p>
+                <img src="./alien-PhotoRoom.png-PhotoRoom.png" alt="MARVIN">
+            </label>
+
+            <input type="radio" name="mascota" id="MARVIN" />
+        </div>
+
+        <button id="boton-mascota">Seleccionar</button>
+
+    </section>
+
+
+    <section id="seleccionar-ataque">
+        <h1 class="title">PIEDRA - PAPEL - TIJERA</h1>
+
+        <div class="contenedor-de-vs">
+            <p>Elejiste a - <span id="mascota-elejida-jugador"></span> - tienes <span id="vidas-jugador"> 3 </span>
+                vidas
+            </p>
+        </div>
+
+        <img src="./VS.png" alt="" class="logo-vs">
+
+        <div class="contenedor-de-vs1">
+            <p>Tu enemigo elijio a - <span id="mascota-elejida-enemigo"></span> - tiene <span id="vidas-enemigo"> 3
+                </span>
+                vidas</p>
+            </div>
+            
+            <h2 class="subtitle">ELIJE CON QUE DESEAS JUGAR</h2>
+            
+            <div class="botones-y-container">
+                <div>
+                    <button id="boton-fuego" class="boton-de-ataque-princi">PIEDRA - 🪨</button>
+                    
+                    <button id="boton-agua" class="boton-de-ataque-princi">PAPEL - 📃</button>
+                    
+                    <button id="boton-tierra" class="boton-de-ataque-princi">TIJERA - ✂️</button>
+                </div>
+                
+                <div>
+                    <!--En esya linea de parrrafo se hara la inyeccion de de un mensaje a travez de JavaScript.. -->
+                    
+                    <div id="mensajes">
+                        <p id="resultados"></p>
+                        <section id="reiniciar">
+                            <button id="boton-reiniciar">REINICIAR</button>
+                    </section>
+                </div>
+
+                <div>
+                    <div id="ataques-del-jugador"></div>
+                    <div id="ataques-del-enemigo"></div>
+                </div>
+
+            </div>
+
+    </section>
+
+    <script src="./mokepon.js"></script>
+</body>
+
+</html>
