@@ -112,22 +112,22 @@ function combates() {
   if (ataqueJugador == ataqueAleatorioEnemigoVariableGlobal) {
     crearMensaje("Empate");
   } else if (
-    ataqueJugador == "Fuego" &&
-    ataqueAleatorioEnemigoVariableGlobal == "Tierra"
+    ataqueJugador == "Piedra" &&
+    ataqueAleatorioEnemigoVariableGlobal == "Tijera"
   ) {
     crearMensaje("Tu Ganas");
     vidasEnemigo--;
     spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else if (
-    ataqueJugador == "Agua" &&
-    ataqueAleatorioEnemigoVariableGlobal == "Fuego"
+    ataqueJugador == "Tijera" &&
+    ataqueAleatorioEnemigoVariableGlobal == "Papel"
   ) {
     crearMensaje("Tu Ganas");
     vidasEnemigo--;
     spanVidasEnemigo.innerHTML = vidasEnemigo;
   } else if (
-    ataqueBotonTierra == "Tierra" &&
-    ataqueAleatorioEnemigoVariableGlobal == "Agua"
+    ataqueJugador == "Papel" &&
+    ataqueAleatorioEnemigoVariableGlobal == "Piedra"
   ) {
     crearMensaje("Tu Ganas");
     vidasEnemigo--;
@@ -152,7 +152,7 @@ function revisarVidas() {
 function crearMensaje(resultados) {
  let seccionMensaje = document.getElementById('resultados');
  let ataquesDelJugador = document.getElementById('ataques-del-jugador');
- let atquesDelEnemigo = document.getElementById('ataques-del-enemigo');
+ let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
  
  let nuevoAtaqueDelJugador =  document.createElement('p');
  let nuevoAtaqueDelEnemigo = document.createElement('p');
@@ -162,7 +162,7 @@ function crearMensaje(resultados) {
  nuevoAtaqueDelEnemigo.innerHTML = ataqueAleatorioEnemigoVariableGlobal;
 
  ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
- atquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
+ ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
  
 }
 
