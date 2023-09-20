@@ -7,15 +7,6 @@ let ataqueAleatorioEnemigoVariableGlobal;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
-// function ataquesParaJugador() {
-//   if (ataquesParaJugador == botonFuego) {
-//     alert("Atacaste con Fuego");
-//   } else if (ataquesParaJugador == botonAgua) {
-//     alert("Atacaste con agua");
-//   } else {
-//     alert("Atacaste con Tierra");
-//   }
-// }
 
 function iniciarJuego() {
   let ocultarSeccionAtaque = document.getElementById("seleccionar-ataque");
@@ -26,7 +17,7 @@ function iniciarJuego() {
 
   let botonMascotaJugador = document.getElementById("boton-mascota");
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
-
+ 
   let botonFuego = document.getElementById("boton-fuego");
   botonFuego.addEventListener("click", ataqueBotonFuego);
   let botonAgua = document.getElementById("boton-agua");
@@ -159,25 +150,21 @@ function revisarVidas() {
 }
 
 function crearMensaje(resultados) {
-  let seccionMensaje = document.getElementById("resultados");
-  let ataquesDelJugador = document.getElementById("ataques-del-jugador");
-  let ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
+ let seccionMensaje = document.getElementById('resultados');
+ let ataquesDelJugador = document.getElementById('ataques-del-jugador');
+ let atquesDelEnemigo = document.getElementById('ataques-del-enemigo');
+ 
+ let nuevoAtaqueDelJugador =  document.createElement('p');
+ let nuevoAtaqueDelEnemigo = document.createElement('p');
 
-  let notificacion = document.createElement("p");
-  let nuevoAtaqueJugador = document.createElement("p");
-  let nuevoAtaqueEnemigo = document.createElement("p");
+ seccionMensaje.innerHTML = resultados;
+ nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+ nuevoAtaqueDelEnemigo.innerHTML = ataqueAleatorioEnemigoVariableGlobal;
 
-  notificacion.innerHTML = resultados;
-  nuevoAtaqueJugador.innerHTML = ataqueJugador;
-  nuevoAtaqueEnemigo.innerHTML = ataqueAleatorioEnemigoVariableGlobal;
-
-  seccionMensaje.appendChild(notificacion);
-  ataquesDelJugador.appendChild(ataquesDelJugador);
-  ataquesDelEnemigo.appendChild(ataquesDelEnemigo);  
-
+ ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
+ atquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
+ 
 }
-
-console.log();
 
 
 function crearMensajeFinal(resultadoFinal) {
@@ -196,7 +183,7 @@ function crearMensajeFinal(resultadoFinal) {
   botonTierra.disabled = true;
 
   let ocultarBotonReiniciar = document.getElementById("boton-reiniciar");
-  ocultarBotonReiniciar.style.display = "flex";
+  ocultarBotonReiniciar.style.display = "block";
 }
 
 function reiniciarJuego() {
