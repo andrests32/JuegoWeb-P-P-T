@@ -7,7 +7,6 @@ let ataqueAleatorioEnemigoVariableGlobal;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
-
 function iniciarJuego() {
   let ocultarSeccionAtaque = document.getElementById("seleccionar-ataque");
   ocultarSeccionAtaque.style.display = "none";
@@ -17,7 +16,7 @@ function iniciarJuego() {
 
   let botonMascotaJugador = document.getElementById("boton-mascota");
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
- 
+
   let botonFuego = document.getElementById("boton-fuego");
   botonFuego.addEventListener("click", ataqueBotonFuego);
   let botonAgua = document.getElementById("boton-agua");
@@ -150,22 +149,20 @@ function revisarVidas() {
 }
 
 function crearMensaje(resultados) {
- let seccionMensaje = document.getElementById('resultados');
- let ataquesDelJugador = document.getElementById('ataques-del-jugador');
- let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
- 
- let nuevoAtaqueDelJugador =  document.createElement('p');
- let nuevoAtaqueDelEnemigo = document.createElement('p');
+  let seccionMensaje = document.getElementById("resultados");
+  let ataquesDelJugador = document.getElementById("ataques-del-jugador");
+  let ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
 
- seccionMensaje.innerHTML = resultados;
- nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
- nuevoAtaqueDelEnemigo.innerHTML = ataqueAleatorioEnemigoVariableGlobal;
+  let nuevoAtaqueDelJugador = document.createElement("p");
+  let nuevoAtaqueDelEnemigo = document.createElement("p");
 
- ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
- ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
- 
+  seccionMensaje.innerHTML = resultados;
+  nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+  nuevoAtaqueDelEnemigo.innerHTML = ataqueAleatorioEnemigoVariableGlobal;
+
+  ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
+  ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
 }
-
 
 function crearMensajeFinal(resultadoFinal) {
   let seccionMensaje = document.getElementById("resultados");

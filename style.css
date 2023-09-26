@@ -69,7 +69,11 @@ img {
 }
 
 input {
-    width: 20px;
+        display: none;
+}
+
+input:checked + label{
+    background-color: #F2F7A1;
 }
 
 .tarjeta-imagen img {
@@ -171,7 +175,7 @@ input {
 #mensajes {
     width: 400px;
     /* height: 80px; */
-    background-color: #A8DF8E;
+    background-color: #FFFFDD;
     padding-top: 10px;
     padding-bottom: 20px;
     margin-top: 20px;
@@ -207,10 +211,49 @@ input {
 .cajas {
     margin-top: 30px;
     width: 150px;
-
+    color: #26577C;
     background-color: #FFFFDD;
     text-align: center;
     border-radius: 10px;
     font-family: 'Black Ops One', cursive;
     font-size: x-large;
+    border: 2px solid #26577C;
+}
+
+@media (max-width: 360px) {
+    .title{
+        text-align: center;
+    }
+
+    img{
+        width: 150px;
+    }
+
+    .subtitle {
+        text-align: center;
+    }
+
+    .tarjeta-imagen{
+    flex-direction: column;
+    }
+
+    .contenedor-de-vs, .contenedor-de-vs1 {
+        display: flexbox;
+        text-align: center;
+        justify-content: center;
+        width: 300px;
+        height: 100px;
+    }
+
+    .botones-y-container {
+        display: flexbox;
+        text-align: center;
+        width: 50px;
+    }
+
+    #mensajes {
+        display: flexbox;
+        text-align: center;
+        width: 300px;
+    }
 }
