@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mokepon</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./mokepon.js"></script>
 
 
 </head>
@@ -14,33 +13,33 @@
 <body>
     <section id="seleccionar-mascota">
 
-        <h1 class="title">PIEDRA - PAPEL - TIJERA</h1>
+        <h1 class="title">PIEDRA PAPEL TIJERA</h1>
 
         <img src="./img/6831874.png" alt="imagen">
 
-        <h2 class="subtitle">¡ELIJE CON QUIEN QUIERES JUGAR!</h2>
+        <h2 class="subtitle">ELIJE CON QUIEN QUIERES JUGAR?</h2>
 
         <div class="tarjeta-imagen">
+            <input type="radio" name="mascota" id="ROCKY" />
             <label class="stilo-texto-mascota" for="ROCKY">
                 <p>ROCKY</p>
                 <img src="./img/nino-PhotoRoom.png-PhotoRoom.png" alt="ROCKY" class="ajuste-img">
             </label>
 
-            <input type="radio" name="mascota" id="ROCKY" />
 
+            <input type="radio" name="mascota" id="LOREN" />
             <label class="stilo-texto-mascota" for="LOREN">
                 <p>LOREN</p>
                 <img src="./img/nina-PhotoRoom.png-PhotoRoom.png" alt="LOREN">
             </label>
 
-            <input type="radio" name="mascota" id="LOREN" />
 
+            <input type="radio" name="mascota" id="MARVIN" />
             <label class="stilo-texto-mascota" for="MARVIN">
                 <p>MARVIN</p>
                 <img src="./img/alien-PhotoRoom.png-PhotoRoom.png" alt="MARVIN">
             </label>
 
-            <input type="radio" name="mascota" id="MARVIN" />
         </div>
 
         <button id="boton-mascota">Seleccionar</button>
@@ -49,7 +48,8 @@
 
 
     <section id="seleccionar-ataque">
-        <h1 class="title">PIEDRA - PAPEL - TIJERA</h1>
+        <h1 class="title">PIEDRA PAPEL TIJERA</h1>
+
 
         <div class="contenedor-de-vs">
             <p>Elejiste a - <span id="mascota-elejida-jugador"></span> - tienes <span id="vidas-jugador"> 3 </span>
@@ -88,20 +88,21 @@
                 <div class="contenedor-mensajes-ataque">
                     <div class="cajas">
                         <p id="mascota-elejida-jugador"> </p>
-                        <p id="vidas-jugador"> 3 </p>
-                        <div id="ataques-del-jugador"></div>
+                        <!-- <p id="vidas-jugador"> 3 </p> -->
+                        <div id="ataques-del-jugador">Elegiste</div>
                     </div>
 
                     <div class="cajas">
                         <p id="mascota-elejida-enemigo"> </p>
-                        <p id="vidas-enemigo"> 3 </p>
-                        <div id="ataques-del-enemigo"></div>
+                        <!-- <p id="vidas-enemigo"> 3 </p> -->
+                        <div id="ataques-del-enemigo">Enemigo</div>
                     </div>
 
                 </div>
             </div>
     </section>
 
+    <script src="./mokepon.js"></script>
 </body>
 
 </html>
