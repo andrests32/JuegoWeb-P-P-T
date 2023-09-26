@@ -25,29 +25,45 @@ const seccionMensaje = document.getElementById("resultados");
 const ataquesDelJugador = document.getElementById("ataques-del-jugador");
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
 /////////////////////////////////////////////////////////////////////////
+const iyectionpersons = document.getElementById("iyection-persons");
 
 let nuevoPersonaje = [];
 let ataqueJugador;
 let ataqueAleatorioEnemigoVariableGlobal;
 
+let opcionPersons;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
 class Nuevomokepon {
-  constructor(nombre, foto, vida){
+  constructor(nombre, foto, vida) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
   }
-};
+}
 
-let rosco = new Nuevomokepon('Rosco', './img/rosco-PhotoRoom.png-PhotoRoom.png', 3);
-let bob = new Nuevomokepon('Bob', './img/Bob-PhotoRoom.png-PhotoRoom.png', 3);  
+let rosco = new Nuevomokepon(
+  "ROSCO",
+  "./img/rosco-PhotoRoom.png-PhotoRoom.png",
+  3
+);
+let bob = new Nuevomokepon("BOB", "./img/Bob-PhotoRoom.png-PhotoRoom.png", 3);
 
-nuevoPersonaje.push(rosco,bob);
+nuevoPersonaje.push(rosco, bob);
 
 function iniciarJuego() {
   ocultarSeccionAtaque.style.display = "none";
+
+  nuevoPersonaje.forEach((persons) => {
+    opcionPersons = `<input type="radio" name="mascota" id=${persons.nombre} />
+    <label class="stilo-texto-mascota" for=${persons.nombre}>
+        <p>${persons.nombre}</p>
+        <img src=${persons.foto} alt=${persons.nombre} class="ajuste-img">
+    </label>`;
+    iyectionpersons.innerHTML += opcionPersons;
+  });
+
   ocultarBotonReiniciar.style.display = "none";
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
   botonFuego.addEventListener("click", ataqueBotonFuego);
