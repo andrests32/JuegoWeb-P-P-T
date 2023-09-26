@@ -69,10 +69,10 @@ img {
 }
 
 input {
-        display: none;
+    display: none;
 }
 
-input:checked + label{
+input:checked+label {
     background-color: #F2F7A1;
 }
 
@@ -203,8 +203,8 @@ input:checked + label{
 }
 
 .contenedor-mensajes-ataque {
-   display: flex;
-   justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 
 }
 
@@ -221,11 +221,11 @@ input:checked + label{
 }
 
 @media (max-width: 360px) {
-    .title{
+    .title {
         text-align: center;
     }
 
-    img{
+    img {
         width: 150px;
     }
 
@@ -233,11 +233,12 @@ input:checked + label{
         text-align: center;
     }
 
-    .tarjeta-imagen{
-    flex-direction: column;
+    .tarjeta-imagen {
+        flex-direction: column;
     }
 
-    .contenedor-de-vs, .contenedor-de-vs1 {
+    .contenedor-de-vs,
+    .contenedor-de-vs1 {
         display: flexbox;
         text-align: center;
         justify-content: center;
