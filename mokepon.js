@@ -26,14 +26,25 @@ const ataquesDelJugador = document.getElementById("ataques-del-jugador");
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
 /////////////////////////////////////////////////////////////////////////
 
-// alert("Te damos la bienvenida a nuestro juego de mokepon");
-//Variables para los ataques..
+let nuevoPersonaje = [];
 let ataqueJugador;
 let ataqueAleatorioEnemigoVariableGlobal;
 
-//Variable vidas de jugadores..
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+
+class Nuevomokepon {
+  constructor(nombre, foto, vida){
+    this.nombre = nombre;
+    this.foto = foto;
+    this.vida = vida;
+  }
+};
+
+let rosco = new Nuevomokepon('Rosco', './img/rosco-PhotoRoom.png-PhotoRoom.png', 3);
+let bob = new Nuevomokepon('Bob', './img/Bob-PhotoRoom.png-PhotoRoom.png', 3);  
+
+nuevoPersonaje.push(rosco,bob);
 
 function iniciarJuego() {
   ocultarSeccionAtaque.style.display = "none";
