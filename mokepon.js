@@ -7,9 +7,7 @@ const botonTierra = document.getElementById("boton-tierra");
 const botonReiniciarJuego = document.getElementById("boton-reiniciar");
 //////////////////////////////////////////////////////////////////////
 const ocultarSeccionMascota = document.getElementById("seleccionar-mascota");
-const mas1 = document.getElementById("ROCKY");
-const mas2 = document.getElementById("LOREN");
-const mas3 = document.getElementById("MARVIN");
+
 const spanMascotaElejidaJugador = document.getElementById(
   "mascota-elejida-jugador"
 );
@@ -35,6 +33,9 @@ let ataqueJugador;
 let ataqueAleatorioEnemigoVariableGlobal;
 
 let opcionPersons;
+let mas1;
+let mas2;
+let mas3;
 let mas4;
 let mas5;
 let vidasJugador = 3;
@@ -67,7 +68,9 @@ function iniciarJuego() {
         <img src=${persons.foto} alt=${persons.nombre} class="ajuste-img">
     </label>`;
     iyectionpersons.innerHTML += opcionPersons;
-
+    mas1 = document.getElementById("ROCKY");
+    mas2 = document.getElementById("LOREN");
+    mas3 = document.getElementById("MARVIN");
     mas4 = document.getElementById("ROSCO");
     mas5 = document.getElementById("BOB");
   });
@@ -100,7 +103,7 @@ seleccMascotaEnemiga();
 
 function seleccMascotaEnemiga() {
   let aleatMascotaEnemiga = alet(1, 4);
-  let aleatMascotaEnemiga2 = alet(0, nuevoPersonaje.length -1);
+  let aleatMascotaEnemiga2 = alet(0, nuevoPersonaje.length - 1);
   if (aleatMascotaEnemiga == 1) {
     spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
   } else if (aleatMascotaEnemiga == 2) {
@@ -108,9 +111,9 @@ function seleccMascotaEnemiga() {
   } else if (aleatMascotaEnemiga == 3) {
     spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
   } else {
-    spanMascotaElejidaEnemigo.innerHTML = nuevoPersonaje[aleatMascotaEnemiga2].nombre;
+    spanMascotaElejidaEnemigo.innerHTML =
+      nuevoPersonaje[aleatMascotaEnemiga2].nombre;
   }
-  
 }
 
 // function seleccMascotaEnemiga() {
