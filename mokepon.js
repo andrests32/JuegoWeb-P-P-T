@@ -13,6 +13,7 @@ const mas3 = document.getElementById("MARVIN");
 const spanMascotaElejidaJugador = document.getElementById(
   "mascota-elejida-jugador"
 );
+
 ////////////////////////////////////////////////////////////////////////
 const spanMascotaElejidaEnemigo = document.getElementById(
   "mascota-elejida-enemigo"
@@ -20,10 +21,12 @@ const spanMascotaElejidaEnemigo = document.getElementById(
 ///////////////////////////////////////////////////////////////////////
 const spanVidasJugador = document.getElementById("vidas-jugador");
 const spanVidasEnemigo = document.getElementById("vidas-enemigo");
+
 ///////////////////////////////////////////////////////////////////////
 const seccionMensaje = document.getElementById("resultados");
 const ataquesDelJugador = document.getElementById("ataques-del-jugador");
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
+
 /////////////////////////////////////////////////////////////////////////
 const iyectionpersons = document.getElementById("iyection-persons");
 
@@ -32,6 +35,8 @@ let ataqueJugador;
 let ataqueAleatorioEnemigoVariableGlobal;
 
 let opcionPersons;
+let mas4;
+let mas5;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -62,6 +67,9 @@ function iniciarJuego() {
         <img src=${persons.foto} alt=${persons.nombre} class="ajuste-img">
     </label>`;
     iyectionpersons.innerHTML += opcionPersons;
+
+    mas4 = document.getElementById("ROSCO");
+    mas5 = document.getElementById("BOB");
   });
 
   ocultarBotonReiniciar.style.display = "none";
@@ -81,22 +89,44 @@ function seleccionarMascotaJugador() {
     spanMascotaElejidaJugador.innerHTML = "LOREN";
   } else if (mas3.checked) {
     spanMascotaElejidaJugador.innerHTML = "MARVIN";
+  } else if (mas4.checked) {
+    spanMascotaElejidaJugador.innerHTML = "ROSCO";
   } else {
+    spanMascotaElejidaJugador.innerHTML = "BOB";
   }
-
-  seleccMascotaEnemiga();
 }
 
+seleccMascotaEnemiga();
+
 function seleccMascotaEnemiga() {
-  let aleatMascotaEnemiga = alet(1, 3);
+  let aleatMascotaEnemiga = alet(1, 4);
+  let aleatMascotaEnemiga2 = alet(0, nuevoPersonaje.length -1);
   if (aleatMascotaEnemiga == 1) {
     spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
   } else if (aleatMascotaEnemiga == 2) {
     spanMascotaElejidaEnemigo.innerHTML = "LOREN";
-  } else {
+  } else if (aleatMascotaEnemiga == 3) {
     spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
+  } else {
+    spanMascotaElejidaEnemigo.innerHTML = nuevoPersonaje[aleatMascotaEnemiga2].nombre;
   }
+  
 }
+
+// function seleccMascotaEnemiga() {
+//   let aleatMascotaEnemiga = alet(1, 5);
+//   if (aleatMascotaEnemiga == 1) {
+//     spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
+//   } else if (aleatMascotaEnemiga == 2) {
+//     spanMascotaElejidaEnemigo.innerHTML = "LOREN";
+//   } else if (aleatMascotaEnemiga == 3) {
+//     spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
+//   } else if (aleatMascotaEnemiga == 4) {
+//     spanMascotaElejidaEnemigo.innerHTML = "ROSCO";
+//   } else {
+//     spanMascotaElejidaEnemigo.innerHTML = "BOB";
+//   }
+// }
 
 function ataqueBotonFuego() {
   ataqueJugador = "Piedra";
