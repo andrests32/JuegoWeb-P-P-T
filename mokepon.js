@@ -116,20 +116,6 @@ function seleccMascotaEnemiga() {
   }
 }
 
-// function seleccMascotaEnemiga() {
-//   let aleatMascotaEnemiga = alet(1, 5);
-//   if (aleatMascotaEnemiga == 1) {
-//     spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
-//   } else if (aleatMascotaEnemiga == 2) {
-//     spanMascotaElejidaEnemigo.innerHTML = "LOREN";
-//   } else if (aleatMascotaEnemiga == 3) {
-//     spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
-//   } else if (aleatMascotaEnemiga == 4) {
-//     spanMascotaElejidaEnemigo.innerHTML = "ROSCO";
-//   } else {
-//     spanMascotaElejidaEnemigo.innerHTML = "BOB";
-//   }
-// }
 
 function ataqueBotonFuego() {
   ataqueJugador = "Piedra";
