@@ -44,18 +44,21 @@ let mas5;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let lienzo = mapa.getContext("2d");
+let intervalo;
 
 class Nuevomokepon {
   constructor(nombre, foto, vida) {
-    this.nombre = nombre
-    this.foto = foto
-    this.vida = vida
-    this.x = 20
-    this.y = 20
-    this.width = 80
-    this.height = 80
+    this.nombre = nombre;
+    this.foto = foto;
+    this.vida = vida;
+    this.x = 20;
+    this.y = 20;
+    this.width = 80;
+    this.height = 80;
     this.mapaFoto = new Image();
     this.mapaFoto.scr = foto;
+    this.veloX = 0;
+    this.veloY = 0;
   }
 }
 
@@ -101,8 +104,10 @@ function seleccionarMascotaJugador() {
 
   sectionVerMapa.style.display = "flex";
 
-  // pintarPersonaje()
- 
+  intervalo = setInterval(pintarPersonaje, 50);
+
+  window.addEventListener('keydown', touchKey);
+  window.addEventListener('keyup', detenerMovimiento);
 
   if (mas1.checked) {
     spanMascotaElejidaJugador.innerHTML = "ROCKY";
@@ -230,21 +235,55 @@ function alet(min, max) {
 }
 
 function pintarPersonaje() {
+  rosco.x = rosco.x + rosco.veloX;
+  rosco.y = rosco.y + rosco.veloY;
   let imagenDeLoren = new Image();
-  imagenDeLoren.src = rosco.foto //Otra opcion seria de forma local cuando las imagenes esten dentro del html y no con un costructor."imagenDeLoren.src = "./img/nina-PhotoRoom.png-PhotoRoom.png";"
-  lienzo.clearRect(0, 0, mapa.width, mapa.height)
-  lienzo.drawImage(
-    imagenDeLoren, 
-    rosco.x,
-    rosco.y, 
-    rosco.width, 
-    rosco.height
-    );
+  imagenDeLoren.src = rosco.foto; //Otra opcion seria de forma local cuando las imagenes esten dentro del html y no con un costructor."imagenDeLoren.src = "./img/nina-PhotoRoom.png-PhotoRoom.png";"
+  lienzo.clearRect(0, 0, mapa.width, mapa.height);
+  lienzo.drawImage(imagenDeLoren, rosco.x, rosco.y, rosco.width, rosco.height);
 }
 
-function moverRosco() {
-  rosco.x = rosco.x + 5
-  pintarPersonaje()
+function moverArriba() {
+  rosco.veloY = -5;
 }
 
+function moverAbajo() {
+  rosco.veloY = 5;
+}
+
+function moverIzquierda() {
+  rosco.veloX = -5;
+}
+
+function moverDerecha() {
+  rosco.veloX = 5;
+}
+
+function detenerMovimiento() {
+  rosco.veloX = 0;
+  rosco.veloY = 0;
+}
+
+function touchKey(event) {
+  switch(event.key){
+    case'ArrowUp':
+    moverArriba()
+    break;
+
+    case'ArrowDown':
+    moverAbajo()
+    break;
+
+    case'ArrowLeft':
+    moverIzquierda()
+    break;
+
+    case'ArrowRight':
+    moverDerecha()
+    break;
+
+    default:
+      break
+  }
+}
 window.addEventListener("load", iniciarJuego);

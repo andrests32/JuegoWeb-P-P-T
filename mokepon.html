@@ -46,11 +46,16 @@
 
     </section>
 
-<!-- Seccion perteneciente al mapa con canvas.. -->
+    <!-- Seccion perteneciente al mapa con canvas.. -->
     <section id="ver-mapa">
         <h1 class="title">PIEDRA PAPEL TIJERA</h1>
         <canvas id="mapa"></canvas>
-        <button onclick="moverRosco()">MOVER</button>
+        <div>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">MOVER-ARRIBA</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">MOVER-ABAJO</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">MOVER-IZQUIERDA</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">MOVER-DERECHA</button>
+        </div>
     </section>
 
 
