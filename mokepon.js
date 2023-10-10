@@ -41,10 +41,13 @@ let mas2;
 let mas3;
 let mas4;
 let mas5;
+let mascotaJugadorObjeto;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let lienzo = mapa.getContext("2d");
 let intervalo;
+let mapaBackground = new Image();
+mapaBackground.src = "./img/mokemap.png";
 
 class Nuevomokepon {
   constructor(nombre, foto, vida) {
@@ -104,11 +107,6 @@ function seleccionarMascotaJugador() {
 
   sectionVerMapa.style.display = "flex";
 
-  intervalo = setInterval(pintarPersonaje, 50);
-
-  window.addEventListener('keydown', touchKey);
-  window.addEventListener('keyup', detenerMovimiento);
-
   if (mas1.checked) {
     spanMascotaElejidaJugador.innerHTML = "ROCKY";
   } else if (mas2.checked) {
@@ -122,6 +120,7 @@ function seleccionarMascotaJugador() {
   }
 }
 
+iniciarMapa();
 seleccMascotaEnemiga();
 
 function seleccMascotaEnemiga() {
@@ -138,22 +137,6 @@ function seleccMascotaEnemiga() {
       nuevoPersonaje[aleatMascotaEnemiga2].nombre;
   }
 }
-
-// function seleccMascotaEnemiga() {
-//   let aleatMascotaEnemiga = alet(1, 5);
-//   if (aleatMascotaEnemiga == 1) {
-//     spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
-//   } else if (aleatMascotaEnemiga == 2) {
-//     spanMascotaElejidaEnemigo.innerHTML = "LOREN";
-//   } else if (aleatMascotaEnemiga == 3) {
-//     spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
-//   } else if (aleatMascotaEnemiga == 4) {
-//     spanMascotaElejidaEnemigo.innerHTML = "ROSCO";
-//   } else {
-//     spanMascotaElejidaEnemigo.innerHTML = "BOB";
-//   }
-// }
-
 function ataqueBotonFuego() {
   ataqueJugador = "Piedra";
   ataqueAleatorioEnemigo();
@@ -249,13 +232,14 @@ function alet(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function pintarPersonaje() {
+function pintarCanvas() {
   rosco.x = rosco.x + rosco.veloX;
   rosco.y = rosco.y + rosco.veloY;
-  let imagenDeLoren = new Image();
-  imagenDeLoren.src = rosco.foto; //Otra opcion seria de forma local cuando las imagenes esten dentro del html y no con un costructor."imagenDeLoren.src = "./img/nina-PhotoRoom.png-PhotoRoom.png";"
+  let imagenDeRosco = new Image();
+  imagenDeRosco.src = rosco.foto; //Otra opcion seria de forma local cuando las imagenes esten dentro del html y no con un costructor."imagenDeLoren.src = "./img/nina-PhotoRoom.png-PhotoRoom.png";"
   lienzo.clearRect(0, 0, mapa.width, mapa.height);
-  lienzo.drawImage(imagenDeLoren, rosco.x, rosco.y, rosco.width, rosco.height);
+  lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
+  lienzo.drawImage(imagenDeRosco, rosco.x, rosco.y, rosco.width, rosco.height);
 }
 
 function moverArriba() {
@@ -280,25 +264,41 @@ function detenerMovimiento() {
 }
 
 function touchKey(event) {
-  switch(event.key){
-    case'ArrowUp':
-    moverArriba()
-    break;
+  switch (event.key) {
+    case "ArrowUp":
+      moverArriba();
+      break;
 
-    case'ArrowDown':
-    moverAbajo()
-    break;
+    case "ArrowDown":
+      moverAbajo();
+      break;
 
-    case'ArrowLeft':
-    moverIzquierda()
-    break;
+    case "ArrowLeft":
+      moverIzquierda();
+      break;
 
-    case'ArrowRight':
-    moverDerecha()
-    break;
+    case "ArrowRight":
+      moverDerecha();
+      break;
 
     default:
-      break
+      break;
   }
 }
+
+function iniciarMapa() {
+  mascotaJugadorObjeto = obtenerNuevoPersonaje(spanMascotaElejidaJugador);
+  intervalo = setInterval(pintarCanvas, 50);
+
+  window.addEventListener("keydown", touchKey);
+  window.addEventListener("keyup", detenerMovimiento);
+}
+
+function obtenerNuevoPersonaje() {
+  for (let i = 0; i < nuevoPersonaje.length; i++) {
+    if (spanMascotaElejidaJugador == nuevoPersonaje[i].nombre)
+      return nuevoPersonaje[i];
+  }
+}
+
 window.addEventListener("load", iniciarJuego);
