@@ -32,7 +32,11 @@
     <section id="ver-mapa">
         <h1 class="title">PIEDRA PAPEL TIJERA</h1>
         <canvas id="mapa"></canvas>
-        <button onclick="moverAvatar()">MOVER</button>
+        <button class="botonMapa" onmouseup="stopmove()" onmousedown="moverAvatarUp()">MOVER UP</button>
+        <button class="botonMapa" onmouseup="stopmove()" onmousedown="moverAvatarLeft()">MOVER LEFT</button>
+        <button class="botonMapa" onmouseup="stopmove()" onmousedown="moverAvatarDown()">MOVER DOWN</button>
+        <button class="botonMapa" onmouseup="stopmove()" onmousedown="moverAvatarRight()">MOVER RIGHT</button>
+
     </section>
 
     <section id="seleccionar-ataque">

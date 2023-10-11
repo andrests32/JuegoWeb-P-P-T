@@ -36,20 +36,33 @@ let ataqueJugador;
 let ataqueAleatorioEnemigoVariableGlobal;
 
 let opcionPersons;
+let objetoAvatarJugador;
 let Rocky;
 let Loren;
 let Marvin;
 let Rosco1;
 let Bob1;
+let mascotaJugador;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 let lienzo = mapa.getContext("2d");
+let interval;
+let mapaBackground = new Image();
+mapaBackground.src = "./img/mokemap.png";
 
 class Nuevomokepon {
   constructor(nombre, foto, vida) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
+    this.x = 20;
+    this.y = 30;
+    this.alto = 80;
+    this.ancho = 80;
+    this.mapFoto = new Image();
+    this.mapFoto.src = foto;
+    this.veloy = 0;
+    this.velox = 0;
   }
 }
 
@@ -107,24 +120,40 @@ function iniciarJuego() {
 function seleccionarMascotaJugador() {
   // ocultarSeccionAtaque.style.display = "flex";
   ocultarSeccionMascota.style.display = "none";
-  sectionMapa.style.display = "flex"
+  sectionMapa.style.display = "flex";
+
 
   if (Rocky.checked) {
     spanMascotaElejidaJugador.innerHTML = Rocky.id;
+    mascotaJugador = Rocky.id
   } else if (Loren.checked) {
     spanMascotaElejidaJugador.innerHTML = Loren.id;
+    mascotaJugador = Loren.id;
   } else if (Marvin.checked) {
     spanMascotaElejidaJugador.innerHTML = Marvin.id;
+    mascotaJugador = Marvin.id;
   } else if (Rosco1.checked) {
     spanMascotaElejidaJugador.innerHTML = Rosco1.id;
+    mascotaJugador = Rosco1.id;
   } else if (Bob1.checked) {
     spanMascotaElejidaJugador.innerHTML = Bob1.id;
+    mascotaJugador = Bob1.id;
   } else {
     alert("Elije un Jugador");
   }
+  iniciarMapa();
+  extraerNombres(mascotaJugador)
+  seleccMascotaEnemiga();
 }
 
-seleccMascotaEnemiga();
+function extraerNombres(mascotaJugador) {
+  for (let i = 0; i < nuevoPersonaje.length; i++) {
+    if(mascotaJugador = nuevoPersonaje[i].nombre){
+      nombre = nuevoPersonaje[i].nombre
+    }
+    
+  }
+}
 
 function seleccMascotaEnemiga() {
   let aleatMascotaEnemiga = alet(1, 4);
@@ -234,6 +263,75 @@ function reiniciarJuego() {
 
 function alet(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function paintCanvas() {
+  objetoAvatarJugador.x = objetoAvatarJugador.x + objetoAvatarJugador.velox;
+  objetoAvatarJugador.y = objetoAvatarJugador.y + objetoAvatarJugador.veloy;
+  lienzo.clearRect(0, 0, mapa.width, mapa.height);
+  lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
+  lienzo.drawImage(objetoAvatarJugador.mapFoto, objetoAvatarJugador.x, objetoAvatarJugador.y, objetoAvatarJugador.alto, objetoAvatarJugador.ancho);
+}
+
+function moverAvatarUp() {
+  objetoAvatarJugador.veloy = -5;
+}
+
+function moverAvatarLeft() {
+  objetoAvatarJugador.velox = -5;
+}
+function moverAvatarDown() {
+  objetoAvatarJugador.veloy = 5;
+}
+
+function moverAvatarRight() {
+  objetoAvatarJugador.velox = 5;
+}
+
+function stopmove() {
+  objetoAvatarJugador.velox = 0;
+  objetoAvatarJugador.veloy = 0;
+}
+
+function presskey(event) {
+  switch (event.key) {
+    case "ArrowUp":
+      moverAvatarUp();
+      break;
+
+    case "ArrowLeft":
+      moverAvatarLeft();
+      break;
+
+    case "ArrowDown":
+      moverAvatarDown();
+      break;
+
+    case "ArrowRight":
+      moverAvatarRight();
+      break;
+
+    default:
+      break;
+  }
+}
+
+function iniciarMapa() {
+  // mapa.width = 40
+  // mapa.height = 40
+  objetoAvatarJugador = obtenerObjetoAvatar(spanMascotaElejidaJugador)
+  interval = setInterval(paintCanvas, 50);
+
+  window.addEventListener("keydown", presskey);
+  window.addEventListener("keyup", stopmove);
+}
+
+function obtenerObjetoAvatar() {
+  for (let i = 0; i < nuevoPersonaje.length; i++) {
+    if (mascotaJugador === nuevoPersonaje[i].nombre) {
+      return nuevoPersonaje[i];
+    }
+  }
 }
 
 window.addEventListener("load", iniciarJuego);
