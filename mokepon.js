@@ -57,8 +57,8 @@ class Nuevomokepon {
     this.vida = vida;
     this.x = 20;
     this.y = 30;
-    this.alto = 80;
-    this.ancho = 80;
+    this.alto = 65;
+    this.ancho = 65;
     this.mapFoto = new Image();
     this.mapFoto.src = foto;
     this.veloy = 0;
@@ -317,8 +317,8 @@ function presskey(event) {
 }
 
 function iniciarMapa() {
-  // mapa.width = 40
-  // mapa.height = 40
+  mapa.width = 320
+  mapa.height = 250
   objetoAvatarJugador = obtenerObjetoAvatar(spanMascotaElejidaJugador)
   interval = setInterval(paintCanvas, 50);
 
