@@ -122,10 +122,9 @@ function seleccionarMascotaJugador() {
   ocultarSeccionMascota.style.display = "none";
   sectionMapa.style.display = "flex";
 
-
   if (Rocky.checked) {
     spanMascotaElejidaJugador.innerHTML = Rocky.id;
-    mascotaJugador = Rocky.id
+    mascotaJugador = Rocky.id;
   } else if (Loren.checked) {
     spanMascotaElejidaJugador.innerHTML = Loren.id;
     mascotaJugador = Loren.id;
@@ -142,16 +141,15 @@ function seleccionarMascotaJugador() {
     alert("Elije un Jugador");
   }
   iniciarMapa();
-  extraerNombres(mascotaJugador)
+  extraerNombres(mascotaJugador);
   seleccMascotaEnemiga();
 }
 
 function extraerNombres(mascotaJugador) {
   for (let i = 0; i < nuevoPersonaje.length; i++) {
-    if(mascotaJugador = nuevoPersonaje[i].nombre){
-      nombre = nuevoPersonaje[i].nombre
+    if ((mascotaJugador = nuevoPersonaje[i].nombre)) {
+      nombre = nuevoPersonaje[i].nombre;
     }
-    
   }
 }
 
@@ -270,7 +268,13 @@ function paintCanvas() {
   objetoAvatarJugador.y = objetoAvatarJugador.y + objetoAvatarJugador.veloy;
   lienzo.clearRect(0, 0, mapa.width, mapa.height);
   lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
-  lienzo.drawImage(objetoAvatarJugador.mapFoto, objetoAvatarJugador.x, objetoAvatarJugador.y, objetoAvatarJugador.alto, objetoAvatarJugador.ancho);
+  lienzo.drawImage(
+    objetoAvatarJugador.mapFoto,
+    objetoAvatarJugador.x,
+    objetoAvatarJugador.y,
+    objetoAvatarJugador.alto,
+    objetoAvatarJugador.ancho
+  );
 }
 
 function moverAvatarUp() {
@@ -317,9 +321,9 @@ function presskey(event) {
 }
 
 function iniciarMapa() {
-  mapa.width = 320
-  mapa.height = 250
-  objetoAvatarJugador = obtenerObjetoAvatar(spanMascotaElejidaJugador)
+  mapa.width = 320;
+  mapa.height = 250;
+  objetoAvatarJugador = obtenerObjetoAvatar(spanMascotaElejidaJugador);
   interval = setInterval(paintCanvas, 50);
 
   window.addEventListener("keydown", presskey);
