@@ -198,6 +198,16 @@ input:checked+label {
     border: 2px solid #26577C;
 }
 
+#ver-mapa {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#mapa {
+    border: solid 4px white;
+}
+
 @media (max-width: 360px) {
     .title {
         text-align: center;

@@ -27,6 +27,9 @@ const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
 
 /////////////////////////////////////////////////////////////////////////
 const iyectionpersons = document.getElementById("iyection-persons");
+//////////////////////////////////////////////////////////////////////////
+const sectionMapa = document.getElementById("ver-mapa");
+const mapa = document.getElementById("mapa");
 
 let nuevoPersonaje = [];
 let ataqueJugador;
@@ -40,6 +43,7 @@ let Rosco1;
 let Bob1;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+let lienzo = mapa.getContext("2d");
 
 class Nuevomokepon {
   constructor(nombre, foto, vida) {
@@ -75,6 +79,7 @@ nuevoPersonaje.push(rocky, loren, marvin, rosco, bob);
 
 function iniciarJuego() {
   ocultarSeccionAtaque.style.display = "none";
+  sectionMapa.style.display = "none";
 
   nuevoPersonaje.forEach((persons) => {
     opcionPersons = `<input type="radio" name="mascota" id=${persons.nombre} />
@@ -83,6 +88,7 @@ function iniciarJuego() {
         <img src=${persons.foto} alt=${persons.nombre} class="ajuste-img">
     </label>`;
     iyectionpersons.innerHTML += opcionPersons;
+
     Rocky = document.getElementById("ROCKY");
     Loren = document.getElementById("LOREN");
     Marvin = document.getElementById("MARVIN");
@@ -99,8 +105,10 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-  ocultarSeccionAtaque.style.display = "flex";
+  // ocultarSeccionAtaque.style.display = "flex";
   ocultarSeccionMascota.style.display = "none";
+  sectionMapa.style.display = "flex"
+
   if (Rocky.checked) {
     spanMascotaElejidaJugador.innerHTML = Rocky.id;
   } else if (Loren.checked) {

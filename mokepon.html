@@ -19,26 +19,8 @@
 
         <h2 class="subtitle">ELIJE CON QUIEN QUIERES JUGAR?</h2>
 
+        <!--Esta seccion es para los personajes, estan inyectados a travez de JS-->
         <div id="iyection-persons" class="tarjeta-imagen">
-            <!-- <input type="radio" name="mascota" id="ROCKY" />
-            <label class="stilo-texto-mascota" for="ROCKY">
-                <p>ROCKY</p>
-                <img src="./img/nino-PhotoRoom.png-PhotoRoom.png" alt="ROCKY" class="ajuste-img">
-            </label>
-
-
-            <input type="radio" name="mascota" id="LOREN" />
-            <label class="stilo-texto-mascota" for="LOREN">
-                <p>LOREN</p>
-                <img src="./img/nina-PhotoRoom.png-PhotoRoom.png" alt="LOREN">
-            </label>
-
-
-            <input type="radio" name="mascota" id="MARVIN" />
-            <label class="stilo-texto-mascota" for="MARVIN">
-                <p>MARVIN</p>
-                <img src="./img/alien-PhotoRoom.png-PhotoRoom.png" alt="MARVIN"> -->
-            </label>
 
         </div>
 
@@ -46,6 +28,12 @@
 
     </section>
 
+    <!-- Esta seccion es para el mapa con canvas -->
+    <section id="ver-mapa">
+        <h1 class="title">PIEDRA PAPEL TIJERA</h1>
+        <canvas id="mapa"></canvas>
+        <button onclick="moverAvatar()">MOVER</button>
+    </section>
 
     <section id="seleccionar-ataque">
         <h1 class="title">PIEDRA PAPEL TIJERA</h1>
@@ -85,11 +73,12 @@
                     </section>
                 </div>
 
+
                 <div class="contenedor-mensajes-ataque">
                     <div class="cajas">
                         <p id="mascota-elejida-jugador"> </p>
                         <div id="ataques-del-jugador">Elegiste</div>
-                    </div> 
+                    </div>
 
                     <div class="cajas">
                         <p id="mascota-elejida-enemigo"> </p>
