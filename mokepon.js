@@ -28,43 +28,42 @@ const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
 /////////////////////////////////////////////////////////////////////////
 const iyectionpersons = document.getElementById("iyection-persons");
 
-const sectionVerMapa = document.getElementById("ver-mapa");
-const mapa = document.getElementById("mapa");
-
 let nuevoPersonaje = [];
 let ataqueJugador;
 let ataqueAleatorioEnemigoVariableGlobal;
 
 let opcionPersons;
-let mas1;
-let mas2;
-let mas3;
-let mas4;
-let mas5;
-let mascotaJugadorObjeto;
+let Rocky;
+let Loren;
+let Marvin;
+let Rosco1;
+let Bob1;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
-let lienzo = mapa.getContext("2d");
-let intervalo;
-let mapaBackground = new Image();
-mapaBackground.src = "./img/mokemap.png";
 
 class Nuevomokepon {
   constructor(nombre, foto, vida) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
-    this.x = 20;
-    this.y = 20;
-    this.width = 80;
-    this.height = 80;
-    this.mapaFoto = new Image();
-    this.mapaFoto.scr = foto;
-    this.veloX = 0;
-    this.veloY = 0;
   }
 }
 
+let rocky = new Nuevomokepon(
+  "ROCKY",
+  "./img/nino-PhotoRoom.png-PhotoRoom.png",
+  3
+);
+let loren = new Nuevomokepon(
+  "LOREN",
+  "./img/nina-PhotoRoom.png-PhotoRoom.png",
+  3
+);
+let marvin = new Nuevomokepon(
+  "MARVIN",
+  "./img/alien-PhotoRoom.png-PhotoRoom.png",
+  3
+);
 let rosco = new Nuevomokepon(
   "ROSCO",
   "./img/rosco-PhotoRoom.png-PhotoRoom.png",
@@ -72,10 +71,9 @@ let rosco = new Nuevomokepon(
 );
 let bob = new Nuevomokepon("BOB", "./img/Bob-PhotoRoom.png-PhotoRoom.png", 3);
 
-nuevoPersonaje.push(rosco, bob);
+nuevoPersonaje.push(rocky, loren, marvin, rosco, bob);
 
 function iniciarJuego() {
-  sectionVerMapa.style.display = "none";
   ocultarSeccionAtaque.style.display = "none";
 
   nuevoPersonaje.forEach((persons) => {
@@ -85,11 +83,11 @@ function iniciarJuego() {
         <img src=${persons.foto} alt=${persons.nombre} class="ajuste-img">
     </label>`;
     iyectionpersons.innerHTML += opcionPersons;
-    mas1 = document.getElementById("ROCKY");
-    mas2 = document.getElementById("LOREN");
-    mas3 = document.getElementById("MARVIN");
-    mas4 = document.getElementById("ROSCO");
-    mas5 = document.getElementById("BOB");
+    Rocky = document.getElementById("ROCKY");
+    Loren = document.getElementById("LOREN");
+    Marvin = document.getElementById("MARVIN");
+    Rosco1 = document.getElementById("ROSCO");
+    Bob1 = document.getElementById("BOB");
   });
 
   ocultarBotonReiniciar.style.display = "none";
@@ -101,26 +99,23 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-  // ocultarSeccionAtaque.style.display = "flex";
-
+  ocultarSeccionAtaque.style.display = "flex";
   ocultarSeccionMascota.style.display = "none";
-
-  sectionVerMapa.style.display = "flex";
-
-  if (mas1.checked) {
-    spanMascotaElejidaJugador.innerHTML = "ROCKY";
-  } else if (mas2.checked) {
-    spanMascotaElejidaJugador.innerHTML = "LOREN";
-  } else if (mas3.checked) {
-    spanMascotaElejidaJugador.innerHTML = "MARVIN";
-  } else if (mas4.checked) {
-    spanMascotaElejidaJugador.innerHTML = "ROSCO";
+  if (Rocky.checked) {
+    spanMascotaElejidaJugador.innerHTML = Rocky.id;
+  } else if (Loren.checked) {
+    spanMascotaElejidaJugador.innerHTML = Loren.id;
+  } else if (Marvin.checked) {
+    spanMascotaElejidaJugador.innerHTML = Marvin.id;
+  } else if (Rosco1.checked) {
+    spanMascotaElejidaJugador.innerHTML = Rosco1.id;
+  } else if (Bob1.checked) {
+    spanMascotaElejidaJugador.innerHTML = Bob1.id;
   } else {
-    spanMascotaElejidaJugador.innerHTML = "BOB";
+    alert("Elije un Jugador");
   }
 }
 
-iniciarMapa();
 seleccMascotaEnemiga();
 
 function seleccMascotaEnemiga() {
@@ -137,6 +132,7 @@ function seleccMascotaEnemiga() {
       nuevoPersonaje[aleatMascotaEnemiga2].nombre;
   }
 }
+
 function ataqueBotonFuego() {
   ataqueJugador = "Piedra";
   ataqueAleatorioEnemigo();
@@ -230,75 +226,6 @@ function reiniciarJuego() {
 
 function alet(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function pintarCanvas() {
-  rosco.x = rosco.x + rosco.veloX;
-  rosco.y = rosco.y + rosco.veloY;
-  let imagenDeRosco = new Image();
-  imagenDeRosco.src = rosco.foto; //Otra opcion seria de forma local cuando las imagenes esten dentro del html y no con un costructor."imagenDeLoren.src = "./img/nina-PhotoRoom.png-PhotoRoom.png";"
-  lienzo.clearRect(0, 0, mapa.width, mapa.height);
-  lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
-  lienzo.drawImage(imagenDeRosco, rosco.x, rosco.y, rosco.width, rosco.height);
-}
-
-function moverArriba() {
-  rosco.veloY = -5;
-}
-
-function moverAbajo() {
-  rosco.veloY = 5;
-}
-
-function moverIzquierda() {
-  rosco.veloX = -5;
-}
-
-function moverDerecha() {
-  rosco.veloX = 5;
-}
-
-function detenerMovimiento() {
-  rosco.veloX = 0;
-  rosco.veloY = 0;
-}
-
-function touchKey(event) {
-  switch (event.key) {
-    case "ArrowUp":
-      moverArriba();
-      break;
-
-    case "ArrowDown":
-      moverAbajo();
-      break;
-
-    case "ArrowLeft":
-      moverIzquierda();
-      break;
-
-    case "ArrowRight":
-      moverDerecha();
-      break;
-
-    default:
-      break;
-  }
-}
-
-function iniciarMapa() {
-  mascotaJugadorObjeto = obtenerNuevoPersonaje(spanMascotaElejidaJugador);
-  intervalo = setInterval(pintarCanvas, 50);
-
-  window.addEventListener("keydown", touchKey);
-  window.addEventListener("keyup", detenerMovimiento);
-}
-
-function obtenerNuevoPersonaje() {
-  for (let i = 0; i < nuevoPersonaje.length; i++) {
-    if (spanMascotaElejidaJugador == nuevoPersonaje[i].nombre)
-      return nuevoPersonaje[i];
-  }
 }
 
 window.addEventListener("load", iniciarJuego);
