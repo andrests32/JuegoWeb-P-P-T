@@ -55,7 +55,7 @@ img {
     align-items: center;
     cursor: pointer;
     color: #26577C;
-    opacity: .9;
+    /* opacity: .9; */
     border: 2px solid #26577C;
 }
 
@@ -202,13 +202,12 @@ input:checked+label {
     flex-direction: column;
     text-align: center;
     justify-content: space-between;
-
-
 }
 
 #mapa {
     border: solid 4px white;
     background-color: #B9B4C7;
+    margin-bottom: 20px;
 }
 
 

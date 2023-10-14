@@ -51,42 +51,96 @@ let mapaBackground = new Image();
 mapaBackground.src = "./img/mokemap.png";
 
 class Nuevomokepon {
-  constructor(nombre, foto, vida) {
+  constructor(nombre, foto, vida, fotoAvatar, x = 10, y = 20) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
-    this.x = 20;
-    this.y = 30;
-    this.alto = 65;
-    this.ancho = 65;
+    this.x = x;
+    this.y = y;
+    this.alto = 45;
+    this.ancho = 45;
     this.mapFoto = new Image();
-    this.mapFoto.src = foto;
+    this.mapFoto.src = fotoAvatar;
     this.veloy = 0;
     this.velox = 0;
+  }
+
+  pintarAvatars() {
+    lienzo.drawImage(this.mapFoto, this.x, this.y, this.alto, this.ancho);
   }
 }
 
 let rocky = new Nuevomokepon(
   "ROCKY",
   "./img/nino-PhotoRoom.png-PhotoRoom.png",
-  3
+  3,
+  "./img/nino-PhotoRoom.png-PhotoRoom.png"
 );
 let loren = new Nuevomokepon(
   "LOREN",
   "./img/nina-PhotoRoom.png-PhotoRoom.png",
-  3
+  3,
+  "./img/nina-PhotoRoom.png-PhotoRoom.png"
 );
 let marvin = new Nuevomokepon(
   "MARVIN",
   "./img/alien-PhotoRoom.png-PhotoRoom.png",
-  3
+  3,
+  "./img/alien-PhotoRoom.png-PhotoRoom.png"
 );
 let rosco = new Nuevomokepon(
   "ROSCO",
   "./img/rosco-PhotoRoom.png-PhotoRoom.png",
-  3
+  3,
+  "./img/rosco-PhotoRoom.png-PhotoRoom.png"
 );
-let bob = new Nuevomokepon("BOB", "./img/Bob-PhotoRoom.png-PhotoRoom.png", 3);
+let bob = new Nuevomokepon(
+  "BOB",
+  "./img/Bob-PhotoRoom.png-PhotoRoom.png",
+  3,
+  "./img/Bob-PhotoRoom.png-PhotoRoom.png"
+);
+
+let rockyEnemigo = new Nuevomokepon(
+  "ROCKY",
+  "./img/nino-PhotoRoom.png-PhotoRoom.png",
+  3,
+  "./img/nino-PhotoRoom.png-PhotoRoom.png",
+  120,
+  85
+);
+let lorenEnemigo = new Nuevomokepon(
+  "LOREN",
+  "./img/nina-PhotoRoom.png-PhotoRoom.png",
+  3,
+  "./img/nina-PhotoRoom.png-PhotoRoom.png",
+  265,
+  189
+);
+let marvinEnemigo = new Nuevomokepon(
+  "MARVIN",
+  "./img/alien-PhotoRoom.png-PhotoRoom.png",
+  3,
+  "./img/alien-PhotoRoom.png-PhotoRoom.png",
+  25,
+  100
+);
+let roscoEnemigo = new Nuevomokepon(
+  "ROSCO",
+  "./img/rosco-PhotoRoom.png-PhotoRoom.png",
+  3,
+  "./img/rosco-PhotoRoom.png-PhotoRoom.png",
+  200,
+  90
+);
+let bobEnemigo = new Nuevomokepon(
+  "BOB",
+  "./img/Bob-PhotoRoom.png-PhotoRoom.png",
+  3,
+  "./img/Bob-PhotoRoom.png-PhotoRoom.png",
+  123,
+  145
+);
 
 nuevoPersonaje.push(rocky, loren, marvin, rosco, bob);
 
@@ -118,7 +172,6 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
-  // ocultarSeccionAtaque.style.display = "flex";
   ocultarSeccionMascota.style.display = "none";
   sectionMapa.style.display = "flex";
 
@@ -154,17 +207,21 @@ function extraerNombres(mascotaJugador) {
 }
 
 function seleccMascotaEnemiga() {
-  let aleatMascotaEnemiga = alet(1, 4);
-  let aleatMascotaEnemiga2 = alet(0, nuevoPersonaje.length - 1);
-  if (aleatMascotaEnemiga == 1) {
-    spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
-  } else if (aleatMascotaEnemiga == 2) {
-    spanMascotaElejidaEnemigo.innerHTML = "LOREN";
-  } else if (aleatMascotaEnemiga == 3) {
-    spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
-  } else {
-    spanMascotaElejidaEnemigo.innerHTML =
-      nuevoPersonaje[aleatMascotaEnemiga2].nombre;
+  // let aleatMascotaEnemiga = alet(1, 4);
+  // let aleatMascotaEnemiga2 = alet(0, nuevoPersonaje.length - 1);
+  // if (aleatMascotaEnemiga == 1) {
+  //   spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
+  // } else if (aleatMascotaEnemiga == 2) {
+  //   spanMascotaElejidaEnemigo.innerHTML = "LOREN";
+  // } else if (aleatMascotaEnemiga == 3) {
+  //   spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
+  // } else {
+  //   spanMascotaElejidaEnemigo.innerHTML =
+  //     nuevoPersonaje[aleatMascotaEnemiga2].nombre;
+  // }
+  
+  if (revisarColision() = revisarColision()) {
+    revisarColision.nombre
   }
 }
 
@@ -268,13 +325,21 @@ function paintCanvas() {
   objetoAvatarJugador.y = objetoAvatarJugador.y + objetoAvatarJugador.veloy;
   lienzo.clearRect(0, 0, mapa.width, mapa.height);
   lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
-  lienzo.drawImage(
-    objetoAvatarJugador.mapFoto,
-    objetoAvatarJugador.x,
-    objetoAvatarJugador.y,
-    objetoAvatarJugador.alto,
-    objetoAvatarJugador.ancho
-  );
+
+  objetoAvatarJugador.pintarAvatars();
+  rockyEnemigo.pintarAvatars();
+  lorenEnemigo.pintarAvatars();
+  marvinEnemigo.pintarAvatars();
+  roscoEnemigo.pintarAvatars();
+  bobEnemigo.pintarAvatars();
+
+  if (objetoAvatarJugador.velox !== 0 || objetoAvatarJugador.veloy !== 0) {
+    revisarColision(rockyEnemigo);
+    revisarColision(lorenEnemigo);
+    revisarColision(marvinEnemigo);
+    revisarColision(roscoEnemigo);
+    revisarColision(bobEnemigo);
+  }
 }
 
 function moverAvatarUp() {
@@ -336,6 +401,33 @@ function obtenerObjetoAvatar() {
       return nuevoPersonaje[i];
     }
   }
+}
+
+function revisarColision(enemigo) {
+  const upEnemigo = enemigo.y;
+  const downEnemigo = enemigo.y + enemigo.alto;
+  const rightEnemigo = enemigo.x + enemigo.ancho;
+  const leftEnemigo = enemigo.x;
+
+  const upPlayer = objetoAvatarJugador.y;
+  const downPlayer = objetoAvatarJugador.y + objetoAvatarJugador.alto;
+  const rightPlayer = objetoAvatarJugador.x + objetoAvatarJugador.ancho;
+  const leftPlayer = objetoAvatarJugador.x;
+
+  if (
+    downPlayer < upEnemigo ||
+    upPlayer > downEnemigo ||
+    rightPlayer < leftEnemigo ||
+    leftPlayer > rightEnemigo
+  ) {
+    return;
+  }
+
+  stopmove();
+  alert("Te enfrentaras a " + enemigo.nombre);
+
+  ocultarSeccionAtaque.style.display = "flex";
+  sectionMapa.style.display = "none";
 }
 
 window.addEventListener("load", iniciarJuego);
