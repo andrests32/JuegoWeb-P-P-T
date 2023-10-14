@@ -4,19 +4,12 @@
 
 body {
     font-family: 'Black Ops One', cursive;
-    /* background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover; */
-    /* display: flex; */
     background-image: url(./img/Sin\ título.jpeg);
-    /* align-items: center; */
-    /* justify-content: center; */
 }
 
 #seleccionar-mascota {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -58,10 +51,8 @@ img {
     box-sizing: border-box;
     border-radius: 10px;
     margin: 20px;
-    /* border: 1px solid #EBE4D1; */
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     cursor: pointer;
     color: #26577C;
     opacity: .9;
@@ -85,10 +76,6 @@ input:checked+label {
 #boton-mascota {
     width: 200px;
     height: 50px;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: center; */
     border-radius: 30px;
     background-color: #FFFFDD;
     font-family: 'Black Ops One', cursive;
@@ -138,7 +125,6 @@ input:checked+label {
 }
 
 #seleccionar-ataque {
-    /* display: flex; */
     flex-direction: column;
     align-items: center;
 }
@@ -150,11 +136,6 @@ input:checked+label {
     align-items: center;
 }
 
-/* .botones-ataques-img1 {
-    display: flex;
-    flex-direction: column;
-    
-} */
 
 
 .boton-de-ataque-princi {
@@ -162,7 +143,6 @@ input:checked+label {
     border-radius: 30px;
     font-size: x-large;
     padding: 10px;
-    /* box-sizing: border-box; */
     font-family: 'Black Ops One', cursive;
     border: 2px solid #26577C;
     color: #26577C;
@@ -174,7 +154,6 @@ input:checked+label {
 
 #mensajes {
     width: 400px;
-    /* height: 80px; */
     background-color: #FFFFDD;
     padding-top: 10px;
     padding-bottom: 20px;
@@ -182,7 +161,6 @@ input:checked+label {
     border-radius: 20px;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
     font-family: 'Black Ops One', cursive;
     font-size: xx-large;
@@ -220,6 +198,22 @@ input:checked+label {
     border: 2px solid #26577C;
 }
 
+
+#ver-mapa {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+#mapa{
+    border: 2px solid white;
+    background-color: #FFFFDD;
+    opacity: .9;
+}
+
+
+/* La parte del responsive design */
 @media (max-width: 360px) {
     .title {
         text-align: center;

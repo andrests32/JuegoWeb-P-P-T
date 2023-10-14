@@ -19,7 +19,7 @@
 
         <h2 class="subtitle">ELIJE CON QUIEN QUIERES JUGAR?</h2>
 
-        <div class="tarjeta-imagen">
+        <div id="iyection-persons" class="tarjeta-imagen">
             <input type="radio" name="mascota" id="ROCKY" />
             <label class="stilo-texto-mascota" for="ROCKY">
                 <p>ROCKY</p>
@@ -44,6 +44,18 @@
 
         <button id="boton-mascota">Seleccionar</button>
 
+    </section>
+
+    <!-- Seccion perteneciente al mapa con canvas.. -->
+    <section id="ver-mapa">
+        <h1 class="title">PIEDRA PAPEL TIJERA</h1>
+        <canvas id="mapa"></canvas>
+        <div>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">MOVER-ARRIBA</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">MOVER-ABAJO</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">MOVER-IZQUIERDA</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">MOVER-DERECHA</button>
+        </div>
     </section>
 
 
@@ -88,20 +100,18 @@
                 <div class="contenedor-mensajes-ataque">
                     <div class="cajas">
                         <p id="mascota-elejida-jugador"> </p>
-                        <!-- <p id="vidas-jugador"> 3 </p> -->
                         <div id="ataques-del-jugador">Elegiste</div>
                     </div>
 
                     <div class="cajas">
                         <p id="mascota-elejida-enemigo"> </p>
-                        <!-- <p id="vidas-enemigo"> 3 </p> -->
                         <div id="ataques-del-enemigo">Enemigo</div>
                     </div>
 
                 </div>
             </div>
+        </div>
     </section>
-
     <script src="./mokepon.js"></script>
 </body>
 

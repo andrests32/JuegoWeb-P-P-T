@@ -1,81 +1,142 @@
-// alert("Te damos la bienvenida a nuestro juego de mokepon");
-//Variables para los ataques..
+const ocultarSeccionAtaque = document.getElementById("seleccionar-ataque");
+const ocultarBotonReiniciar = document.getElementById("boton-reiniciar");
+const botonMascotaJugador = document.getElementById("boton-mascota");
+const botonFuego = document.getElementById("boton-fuego");
+const botonAgua = document.getElementById("boton-agua");
+const botonTierra = document.getElementById("boton-tierra");
+const botonReiniciarJuego = document.getElementById("boton-reiniciar");
+//////////////////////////////////////////////////////////////////////
+const ocultarSeccionMascota = document.getElementById("seleccionar-mascota");
+
+const spanMascotaElejidaJugador = document.getElementById(
+  "mascota-elejida-jugador"
+);
+
+////////////////////////////////////////////////////////////////////////
+const spanMascotaElejidaEnemigo = document.getElementById(
+  "mascota-elejida-enemigo"
+);
+///////////////////////////////////////////////////////////////////////
+const spanVidasJugador = document.getElementById("vidas-jugador");
+const spanVidasEnemigo = document.getElementById("vidas-enemigo");
+
+///////////////////////////////////////////////////////////////////////
+const seccionMensaje = document.getElementById("resultados");
+const ataquesDelJugador = document.getElementById("ataques-del-jugador");
+const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
+
+/////////////////////////////////////////////////////////////////////////
+const iyectionpersons = document.getElementById("iyection-persons");
+
+const sectionVerMapa = document.getElementById("ver-mapa");
+const mapa = document.getElementById("mapa");
+
+let nuevoPersonaje = [];
 let ataqueJugador;
 let ataqueAleatorioEnemigoVariableGlobal;
 
-//Variable vidas de jugadores..
+let opcionPersons;
+let mas1;
+let mas2;
+let mas3;
+let mas4;
+let mas5;
+let mascotaJugadorObjeto;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
+let lienzo = mapa.getContext("2d");
+let intervalo;
+let mapaBackground = new Image();
+mapaBackground.src = "./img/mokemap.png";
+
+class Nuevomokepon {
+  constructor(nombre, foto, vida) {
+    this.nombre = nombre;
+    this.foto = foto;
+    this.vida = vida;
+    this.x = 20;
+    this.y = 20;
+    this.width = 80;
+    this.height = 80;
+    this.mapaFoto = new Image();
+    this.mapaFoto.scr = foto;
+    this.veloX = 0;
+    this.veloY = 0;
+  }
+}
+
+let rosco = new Nuevomokepon(
+  "ROSCO",
+  "./img/rosco-PhotoRoom.png-PhotoRoom.png",
+  3
+);
+let bob = new Nuevomokepon("BOB", "./img/Bob-PhotoRoom.png-PhotoRoom.png", 3);
+
+nuevoPersonaje.push(rosco, bob);
 
 function iniciarJuego() {
-  let ocultarSeccionAtaque = document.getElementById("seleccionar-ataque");
+  sectionVerMapa.style.display = "none";
   ocultarSeccionAtaque.style.display = "none";
 
-  let ocultarBotonReiniciar = document.getElementById("boton-reiniciar");
+  nuevoPersonaje.forEach((persons) => {
+    opcionPersons = `<input type="radio" name="mascota" id=${persons.nombre} />
+    <label class="stilo-texto-mascota" for=${persons.nombre}>
+        <p>${persons.nombre}</p>
+        <img src=${persons.foto} alt=${persons.nombre} class="ajuste-img">
+    </label>`;
+    iyectionpersons.innerHTML += opcionPersons;
+    mas1 = document.getElementById("ROCKY");
+    mas2 = document.getElementById("LOREN");
+    mas3 = document.getElementById("MARVIN");
+    mas4 = document.getElementById("ROSCO");
+    mas5 = document.getElementById("BOB");
+  });
+
   ocultarBotonReiniciar.style.display = "none";
-
-  let botonMascotaJugador = document.getElementById("boton-mascota");
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
-
-  let botonFuego = document.getElementById("boton-fuego");
   botonFuego.addEventListener("click", ataqueBotonFuego);
-  let botonAgua = document.getElementById("boton-agua");
   botonAgua.addEventListener("click", ataqueBotonAgua);
-  let botonTierra = document.getElementById("boton-tierra");
   botonTierra.addEventListener("click", ataqueBotonTierra);
-
-  let botonReiniciarJuego = document.getElementById("boton-reiniciar");
   botonReiniciarJuego.addEventListener("click", reiniciarJuego);
 }
 
 function seleccionarMascotaJugador() {
-  let ocultarSeccionAtaque = document.getElementById("seleccionar-ataque");
-  ocultarSeccionAtaque.style.display = "flex";
+  // ocultarSeccionAtaque.style.display = "flex";
 
-  let ocultarSeccionMascota = document.getElementById("seleccionar-mascota");
   ocultarSeccionMascota.style.display = "none";
 
-  let mas1 = document.getElementById("ROCKY");
-  let mas2 = document.getElementById("LOREN");
-  let mas3 = document.getElementById("MARVIN");
-  let spanMascotaElejidaJugador = document.getElementById(
-    "mascota-elejida-jugador"
-  );
+  sectionVerMapa.style.display = "flex";
 
   if (mas1.checked) {
-    // alert("Elegiste a Tortagua");
     spanMascotaElejidaJugador.innerHTML = "ROCKY";
   } else if (mas2.checked) {
-    // alert("Elegiste a Tortierra");
     spanMascotaElejidaJugador.innerHTML = "LOREN";
   } else if (mas3.checked) {
-    // alert("Elegiste a Torfuego");
     spanMascotaElejidaJugador.innerHTML = "MARVIN";
+  } else if (mas4.checked) {
+    spanMascotaElejidaJugador.innerHTML = "ROSCO";
   } else {
-    // alert("Debes elegir una mascota");
+    spanMascotaElejidaJugador.innerHTML = "BOB";
   }
-
-  seleccMascotaEnemiga();
 }
+
+iniciarMapa();
+seleccMascotaEnemiga();
 
 function seleccMascotaEnemiga() {
-  let aleatMascotaEnemiga = alet(1, 3);
-  let spanMascotaElejidaEnemigo = document.getElementById(
-    "mascota-elejida-enemigo"
-  );
-
+  let aleatMascotaEnemiga = alet(1, 4);
+  let aleatMascotaEnemiga2 = alet(0, nuevoPersonaje.length - 1);
   if (aleatMascotaEnemiga == 1) {
-    // alert("Tu enemigo eligio a Tortuagua");
     spanMascotaElejidaEnemigo.innerHTML = "ROCKY";
   } else if (aleatMascotaEnemiga == 2) {
-    // alert("Tu enemigo eligio a Tortierra");
     spanMascotaElejidaEnemigo.innerHTML = "LOREN";
-  } else {
-    // alert("Tu enemigo eligio a Torfuego");
+  } else if (aleatMascotaEnemiga == 3) {
     spanMascotaElejidaEnemigo.innerHTML = "MARVIN";
+  } else {
+    spanMascotaElejidaEnemigo.innerHTML =
+      nuevoPersonaje[aleatMascotaEnemiga2].nombre;
   }
 }
-
 function ataqueBotonFuego() {
   ataqueJugador = "Piedra";
   ataqueAleatorioEnemigo();
@@ -105,9 +166,6 @@ function ataqueAleatorioEnemigo() {
 }
 
 function combates() {
-  let spanVidasJugador = document.getElementById("vidas-jugador");
-  let spanVidasEnemigo = document.getElementById("vidas-enemigo");
-
   if (ataqueJugador == ataqueAleatorioEnemigoVariableGlobal) {
     crearMensaje("Empate");
   } else if (
@@ -149,37 +207,20 @@ function revisarVidas() {
 }
 
 function crearMensaje(resultados) {
-  let seccionMensaje = document.getElementById("resultados");
-  let ataquesDelJugador = document.getElementById("ataques-del-jugador");
-  let ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
-
   let nuevoAtaqueDelJugador = document.createElement("p");
   let nuevoAtaqueDelEnemigo = document.createElement("p");
-
   seccionMensaje.innerHTML = resultados;
   nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
   nuevoAtaqueDelEnemigo.innerHTML = ataqueAleatorioEnemigoVariableGlobal;
-
   ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
   ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
 }
 
 function crearMensajeFinal(resultadoFinal) {
-  let seccionMensaje = document.getElementById("resultados");
-
-  // let parrafo = document.createElement("p");
   seccionMensaje.innerHTML = resultadoFinal;
-
-  // seccionMensaje.appendChild(parrafo);
-
-  let botonFuego = document.getElementById("boton-fuego");
   botonFuego.disabled = true;
-  let botonAgua = document.getElementById("boton-agua");
   botonAgua.disabled = true;
-  let botonTierra = document.getElementById("boton-tierra");
   botonTierra.disabled = true;
-
-  let ocultarBotonReiniciar = document.getElementById("boton-reiniciar");
   ocultarBotonReiniciar.style.display = "block";
 }
 
@@ -189,6 +230,75 @@ function reiniciarJuego() {
 
 function alet(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function pintarCanvas() {
+  rosco.x = rosco.x + rosco.veloX;
+  rosco.y = rosco.y + rosco.veloY;
+  let imagenDeRosco = new Image();
+  imagenDeRosco.src = rosco.foto; //Otra opcion seria de forma local cuando las imagenes esten dentro del html y no con un costructor."imagenDeLoren.src = "./img/nina-PhotoRoom.png-PhotoRoom.png";"
+  lienzo.clearRect(0, 0, mapa.width, mapa.height);
+  lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
+  lienzo.drawImage(imagenDeRosco, rosco.x, rosco.y, rosco.width, rosco.height);
+}
+
+function moverArriba() {
+  rosco.veloY = -5;
+}
+
+function moverAbajo() {
+  rosco.veloY = 5;
+}
+
+function moverIzquierda() {
+  rosco.veloX = -5;
+}
+
+function moverDerecha() {
+  rosco.veloX = 5;
+}
+
+function detenerMovimiento() {
+  rosco.veloX = 0;
+  rosco.veloY = 0;
+}
+
+function touchKey(event) {
+  switch (event.key) {
+    case "ArrowUp":
+      moverArriba();
+      break;
+
+    case "ArrowDown":
+      moverAbajo();
+      break;
+
+    case "ArrowLeft":
+      moverIzquierda();
+      break;
+
+    case "ArrowRight":
+      moverDerecha();
+      break;
+
+    default:
+      break;
+  }
+}
+
+function iniciarMapa() {
+  mascotaJugadorObjeto = obtenerNuevoPersonaje(spanMascotaElejidaJugador);
+  intervalo = setInterval(pintarCanvas, 50);
+
+  window.addEventListener("keydown", touchKey);
+  window.addEventListener("keyup", detenerMovimiento);
+}
+
+function obtenerNuevoPersonaje() {
+  for (let i = 0; i < nuevoPersonaje.length; i++) {
+    if (spanMascotaElejidaJugador == nuevoPersonaje[i].nombre)
+      return nuevoPersonaje[i];
+  }
 }
 
 window.addEventListener("load", iniciarJuego);
