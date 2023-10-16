@@ -55,7 +55,7 @@ img {
     align-items: center;
     cursor: pointer;
     color: #26577C;
-    opacity: .9;
+    /* opacity: .9; */
     border: 2px solid #26577C;
 }
 
@@ -198,22 +198,26 @@ input:checked+label {
     border: 2px solid #26577C;
 }
 
-
 #ver-mapa {
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#mapa {
+    /* border: solid 4px white; */
+    background-color: #B9B4C7;
+    margin-bottom: 20px;
+}
+
+.botonDireccion {
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: center;
-}
 
-#mapa{
-    border: 2px solid white;
-    background-color: #FFFFDD;
-    opacity: .9;
 }
 
 
-/* La parte del responsive design */
 @media (max-width: 360px) {
     .title {
         text-align: center;
