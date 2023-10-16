@@ -49,16 +49,26 @@ let lienzo = mapa.getContext("2d");
 let interval;
 let mapaBackground = new Image();
 mapaBackground.src = "./img/mokemap.png";
+let findheight;
+let weidthMapa = window.innerWidth - 20;
+findheight = (weidthMapa * 600) / 800;
+mapa.width = weidthMapa;
+mapa.height = findheight;
+let anchoMaxMap = 350;
+
+if (weidthMapa > anchoMaxMap) {
+  weidthMapa = anchoMaxMap - 20;
+}
 
 class Nuevomokepon {
-  constructor(nombre, foto, vida, fotoAvatar, x = 10, y = 20) {
+  constructor(nombre, foto, vida, fotoAvatar) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
-    this.x = x;
-    this.y = y;
-    this.alto = 45;
-    this.ancho = 45;
+    this.alto = 80;
+    this.ancho = 80;
+    this.x = alet(0, mapa.width - this.ancho);
+    this.y = alet(0, mapa.height - this.alto);
     this.mapFoto = new Image();
     this.mapFoto.src = fotoAvatar;
     this.veloy = 0;
@@ -105,41 +115,31 @@ let rockyEnemigo = new Nuevomokepon(
   "ROCKY",
   "./img/nino-PhotoRoom.png-PhotoRoom.png",
   3,
-  "./img/nino-PhotoRoom.png-PhotoRoom.png",
-  120,
-  85
+  "./img/nino-PhotoRoom.png-PhotoRoom.png"
 );
 let lorenEnemigo = new Nuevomokepon(
   "LOREN",
   "./img/nina-PhotoRoom.png-PhotoRoom.png",
   3,
-  "./img/nina-PhotoRoom.png-PhotoRoom.png",
-  265,
-  189
+  "./img/nina-PhotoRoom.png-PhotoRoom.png"
 );
 let marvinEnemigo = new Nuevomokepon(
   "MARVIN",
   "./img/alien-PhotoRoom.png-PhotoRoom.png",
   3,
-  "./img/alien-PhotoRoom.png-PhotoRoom.png",
-  25,
-  100
+  "./img/alien-PhotoRoom.png-PhotoRoom.png"
 );
 let roscoEnemigo = new Nuevomokepon(
   "ROSCO",
   "./img/rosco-PhotoRoom.png-PhotoRoom.png",
   3,
-  "./img/rosco-PhotoRoom.png-PhotoRoom.png",
-  200,
-  90
+  "./img/rosco-PhotoRoom.png-PhotoRoom.png"
 );
 let bobEnemigo = new Nuevomokepon(
   "BOB",
   "./img/Bob-PhotoRoom.png-PhotoRoom.png",
   3,
-  "./img/Bob-PhotoRoom.png-PhotoRoom.png",
-  123,
-  145
+  "./img/Bob-PhotoRoom.png-PhotoRoom.png"
 );
 
 nuevoPersonaje.push(rocky, loren, marvin, rosco, bob);
@@ -195,7 +195,6 @@ function seleccionarMascotaJugador() {
   }
   iniciarMapa();
   extraerNombres(mascotaJugador);
-  seleccMascotaEnemiga();
 }
 
 function extraerNombres(mascotaJugador) {
@@ -206,7 +205,7 @@ function extraerNombres(mascotaJugador) {
   }
 }
 
-function seleccMascotaEnemiga() {
+function seleccMascotaEnemiga(enemigo) {
   // let aleatMascotaEnemiga = alet(1, 4);
   // let aleatMascotaEnemiga2 = alet(0, nuevoPersonaje.length - 1);
   // if (aleatMascotaEnemiga == 1) {
@@ -219,10 +218,7 @@ function seleccMascotaEnemiga() {
   //   spanMascotaElejidaEnemigo.innerHTML =
   //     nuevoPersonaje[aleatMascotaEnemiga2].nombre;
   // }
-  
-  if (revisarColision() = revisarColision()) {
-    revisarColision.nombre
-  }
+  spanMascotaElejidaEnemigo.innerHTML = enemigo.nombre;
 }
 
 function ataqueBotonFuego() {
@@ -386,8 +382,8 @@ function presskey(event) {
 }
 
 function iniciarMapa() {
-  mapa.width = 320;
-  mapa.height = 250;
+  // mapa.width = 320;
+  // mapa.height = 250;
   objetoAvatarJugador = obtenerObjetoAvatar(spanMascotaElejidaJugador);
   interval = setInterval(paintCanvas, 50);
 
@@ -424,10 +420,9 @@ function revisarColision(enemigo) {
   }
 
   stopmove();
-  alert("Te enfrentaras a " + enemigo.nombre);
-
   ocultarSeccionAtaque.style.display = "flex";
   sectionMapa.style.display = "none";
+  seleccMascotaEnemiga(enemigo);
 }
 
 window.addEventListener("load", iniciarJuego);

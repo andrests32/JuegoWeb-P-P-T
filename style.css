@@ -205,11 +205,17 @@ input:checked+label {
 }
 
 #mapa {
-    border: solid 4px white;
+    /* border: solid 4px white; */
     background-color: #B9B4C7;
     margin-bottom: 20px;
 }
 
+.botonDireccion {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
 
 
 @media (max-width: 360px) {
